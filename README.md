@@ -83,6 +83,9 @@ You can see that in the first case two users formed large clusters of people ret
 Getting Started with Twitter using Twitty
 ------------------------------------------
 Now that you have seen the analyses I did with Twitter, it is time to share how I did it in MATLAB. To get started with Twitter, you need to get your developer credentials. You also need Twitty by Vladimir Bondarenko. It is simple to use and comes with excellent documentation.
+
+_**Note**: A couple of people reported that they ran into problems with Twitter credentials using older version of MATLAB. If you don't have access to R2014a version of MATLAB with which my code was based on, you can get a personal use license [MATLAB Home](https://www.mathworks.com/products/matlab-home/) at a substantially reduced price._
+
 1. Create a [Twitter  account](https://twitter.com/) if you do not already have one.
 2. Create a  [Twitter app](https://apps.twitter.com/) to obtain developer credentials
 3. Download and install [Twitty](http://www.mathworks.com/matlabcentral/fileexchange/34837-twitty) from FileExchange, along with [JSON Parser](http://www.mathworks.com/matlabcentral/fileexchange/20565-json-parser) and optionally [JSONLab](http://www.mathworks.com/matlabcentral/fileexchange/33381-jsonlab--a-toolbox-to-encode-decode-json-files-in-matlab-octave)
@@ -143,7 +146,7 @@ GB_tweets = tw.search('matlab','count',100,'include_entities','true','lang','en'
 Processing Tweets and Scoring Sentiments
 ----------------------------------------
 Twitty stores tweets in structure array created from API response in JSON format. I prefer using [table data type](http://www.mathworks.com/help/matlab/tables.html) when it comes to working with heterogeneous data that contain a mix of numbers and text. I wrote a ulitity class `processTweets` to convert structure arrays into tables and compute sentiment scores using [object oriented programming](http://www.mathworks.com/discovery/object-oriented-programming.html), another favorite feature I use a lot.
-For sentiment analysis. I used [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010), along with a [list of English stop words](http://www.textfixer.com/resources/common-english-words.txt) so that we don't count frequent common words like "a" or "the".
+For sentiment analysis. I used [AFINN](http://finnaarupnielsen.wordpress.com/2011/03/16/afinn-a-new-word-list-for-sentiment-analysis/comment-page-1/#comment-445), along with a [list of English stop words](http://www.textfixer.com/resources/common-english-words.txt) so that we don't count frequent common words like "a" or "the".
 
 ```
 % reload the previously saved search result from Great Britain
